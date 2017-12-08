@@ -11,6 +11,9 @@ class Messages:
     group_number = u"Группа №"
     auto_warning = u"**Внимание!** Это автоматически созданный ответ, пожалуйста, не вносите в него правки."
 
+    # Other warning
+    something_wrong = "Something went wrong. "
+
     @staticmethod
     def start_msg():
         return "==================="
@@ -66,4 +69,9 @@ class Messages:
     @staticmethod
     def meta_post_warning():
         msg = "%s%s%s  %s" % (Messages.endl(), Messages.endl(), Messages.auto_warning, Messages.endl())
+        return msg
+
+    @staticmethod
+    def something_went_wrong(extra_msg):
+        msg = "%s %s %s" % (Messages.something_wrong, extra_msg, Messages.endl())
         return msg

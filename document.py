@@ -109,7 +109,7 @@ class DocumentStatistics:
         for document in self.documents:
             document.vectorise(proto)
 
-    def similar_documents(self, threshold=0.90):
+    def similar_documents(self, threshold=0.91):
         def lowest_cosine(cosines, document, threshold):
             closest = threshold
             result_index = -1
