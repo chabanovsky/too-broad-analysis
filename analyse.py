@@ -9,7 +9,7 @@ from operator import itemgetter
 
 from messages import Messages
 from document import Document, DocumentStatistics
-from meta_post import Group
+from group import Group
 from utils import Linker, FileMaker
 
 def do_analyse():
@@ -17,13 +17,13 @@ def do_analyse():
     prefix = "assets"
     question_folder = "%s/%s" % (prefix, Linker.question_folder)
     group_folder = "%s/%s" % (prefix, Linker.group_folder)
+    we_use = 10 # How many answers there will be in the meta post
 
     if os.path.exists(prefix):
         shutil.rmtree(prefix)
 
     os.makedirs(question_folder)
     os.makedirs(group_folder)
-
 
     documents = parse_question_file(linker)
     Messages.on_parsed()
@@ -40,8 +40,6 @@ def do_analyse():
     Messages.docs_classes_stat(len(documents), len(similar))
 
     lengths = {index: len(value) for index, value in enumerate(similar)}
-    we_use = 10 # How many answers there will be in the meta post
-
     final_classes = [key for key, _ in sorted(lengths.items(), key=itemgetter(1), reverse=True)]
 
     groups = [Group(index, similar[index], linker) for index in final_classes]
@@ -53,7 +51,6 @@ def do_analyse():
 
     for answer in groups[:we_use]:
         Messages.send_to_output(str(answer))
-
 
 def parse_question_file(linker, filename="questions.csv"):
     result = list()

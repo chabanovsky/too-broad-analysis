@@ -88,7 +88,7 @@ class DocumentStatistics:
             if document_with_word_count != 0.:
                 result[word] = math.log(float(self.N)/document_with_word_count, 10)
             else:
-                Messages.send_to_output("Something went wrong, |D with word| is 0, word '%s'\r\n" % (word))
+                Messages.send_to_output(Messages.something_went_wrong("|D with word| is 0, word '%s'" % (word)))
                 result[word] = 1
 
         return result
@@ -97,7 +97,7 @@ class DocumentStatistics:
         vector = [(self.index_to_word[key], self.idfs[self.index_to_word[key]]) for key in sorted(self.index_to_word)]
         return vector
 
-    def common_vector_proto(self):
+    def empty_vector_proto(self):
         return np.zeros((1, len(self.dataset))) + 1
 
     def vector_to_words(self, vector):

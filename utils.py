@@ -100,7 +100,6 @@ class Linker:
     def ext(self):
         return self.file_ext
 
-
 class FileMaker:
     def __init__(self, item, prefix="data"):
         self.item = item
