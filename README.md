@@ -17,16 +17,16 @@ This little app does the following:
 
 ### Results
 
-Results are availble in a [meta post]() and on [our exeprimental server](http://assets.rudevs.ru/experiments/too-broad-analysis).
+Results are availble in a [meta post](https://ru.meta.stackoverflow.com/q/6524/6) and on [our exeprimental server](http://assets.rudevs.ru/experiments/too-broad-analysis).
 
 ### Try it!
 
 It's a pure python app. To run it on your PC all what you need is python 3, numpy and [nltk](http://www.nltk.org/). 
 
-As soon as you clone it and install reqired packages, go to the app's root flolder and run the following command in the terminal.
+As soon as you clone it and install all reqired packages, go to the app's root flolder and run the following command in the terminal.
 
     python3 ./too_braod.py --analyse
     
-When it's done you will see 10 most biggest groups in terminal and all groups under an asset folder in the project directory. 
+When it's done you will see 10 most biggest groups in the terminal and all groups under the "assets" folder in the project directory. 
 
-You can make groups bigger by decreasing the threshold of cosine similarity in the docmument.py file. The less this parametor the less similarity between documents is required for questions to be in the same group.
+You can make groups bigger by decreasing a "threshold" parametor of cosine similarity in the docmument.py file. The less this parametor the less similarity between documents is required for questions to appear in the same group.
