@@ -13,15 +13,16 @@ from group import Group
 from utils import Linker, FileMaker
 
 def do_analyse():
-    linker = Linker("assets.rudevs.ru/experiments/too-broad-analysis", "http")
-    prefix = "assets"
-    question_folder = "%s/%s" % (prefix, Linker.question_folder)
-    group_folder = "%s/%s" % (prefix, Linker.group_folder)
     we_use = 10 # How many answers there will be in the meta post
-
+    path = "experiments/too-broad-analysis"
+    linker = Linker("assets.rudevs.ru/%s" % (path), "http")
+    prefix = "assets"
     if os.path.exists(prefix):
         shutil.rmtree(prefix)
 
+    prefix = "%s/%s" % (prefix, path)
+    question_folder = "%s/%s" % (prefix, Linker.question_folder)
+    group_folder = "%s/%s" % (prefix, Linker.group_folder)
     os.makedirs(question_folder)
     os.makedirs(group_folder)
 
@@ -42,7 +43,7 @@ def do_analyse():
     lengths = {index: len(value) for index, value in enumerate(similar)}
     final_classes = [key for key, _ in sorted(lengths.items(), key=itemgetter(1), reverse=True)]
 
-    groups = [Group(index, similar[index], linker) for index in final_classes]
+    groups = [Group(group_id, similar[index], linker) for group_id, index in enumerate(final_classes)]
     files = [FileMaker(group, group_folder) for group in groups]
     files.extend([FileMaker(document, question_folder) for document in documents])
 
